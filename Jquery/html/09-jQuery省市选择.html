@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQuery省市选择</title>
+    <script src="../lib/jquery-1.11.3.min.js"></script>
+</head>
+
+<body>
+    <select name="pro" id="proSel"></select>
+    <select name="city" id="citySel"></select>
+    <script>
+        //第一步:初始化好所有的省信息
+        //模拟从ajax获取的数据
+        var data = [{
+            name:"北京",
+            cities:[
+                "西城","东城","崇文","宣武","朝阳"
+            ]
+        },
+        {
+            name:"山东",
+            cities:[
+                "潍坊","济南","青岛","日照","威海"
+            ]
+        }
+        ];
+
+        $(function(){
+            //初始化省的数据
+            initProSel();
+        });
+
+        //省的下拉列表的初始化
+        function initProSel(){
+            var strHTMLArray = [];
+            for(var i = 0; i < data.length; i++){
+                var proName = data[i].name;
+                //<option value = "北京">北京</option>
+                strHTMLArray.push('<option value="'+ proName +'">' + proName + '</option>')
+            }
+
+            //把拼接好的标签放到省的select下面
+            //jQuery的html方法已经对ie8的select设置innerHTML的bug做了相关处理,可以直接用.
+            $('#proSel').html(strHTMLArray.join(''));
+
+            //给省的select标签绑定change事件
+            $('#proSel').change(function(){
+                //当省选择完之后,要加载城市的信息到citySel
+                //拿到当前选择的省的名字
+                //console.log($('proSel').val());
+                var proName = $('#proSel').val();
+                for(var j = 0; j < data.length; j++){
+                    if(data[j].name == proName){
+                        var cities = data[j].cities;
+                        initCityes(cities);
+                    }
+                }
+            });
+
+            //触发省change的事件处理程序
+            $('#proSel').triggerHandler('change');
+        }
+
+        //初始化城市的信息
+        function initCityes(cities){
+            var strHTMLArray = [];
+            for(var i = 0; i < cities.length; i++){
+                //var cityName = cities[i];
+                strHTMLArray.push('<option value = "'+ cities[i] +'">' + cities[i] + '</option>');
+            }
+            $('#citySel').html(strHTMLArray.join(''));
+        }
+    </script>
+</body>
+
+</html>

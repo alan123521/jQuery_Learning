@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQuery绑定事件的其他方式</title>
+    <script src="../lib/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+    <input type="button" value="按钮" id="btn">
+    <script>
+        $(function(){
+            //绑定的事件只执行一次,执行一次完毕后就失效了
+            $('#btn').one('click',function(e){
+                console.log(111);
+            });
+        });
+    </script>
+</body>
+</html>

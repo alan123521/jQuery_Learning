@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQuery选择器</title>
+    <script src="../lib/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+    <!-- <p>我是P标签</p> -->
+    <div class="cd">
+        我是第一个div1
+    </div>
+    <div class="cd">
+        我是第一个div2
+        张宜成
+    </div>
+    <h3 tm="属性">标题属性</h3>
+
+    <ul class="list">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+
+    <script>
+        $(function(){
+            //全部选择器，选择页面中的所有的标签元素
+            var $all = $('*');
+            console.dir($all);
+
+            //类选择器
+            var $cd = $('.cd');
+            console.dir($cd);
+
+            //将jQuery元素转换为dom元素，并取出第一个div
+            var div1 = $cd[0];
+            console.log(div1.innerHTML);
+
+            //标签选择器和并集选择器
+            console.dir($('div,h3'));
+
+            //交集选择器
+            console.dir($('div.cd2'));
+
+            //过滤器选择器和后代选择器
+            console.dir($('.list li:first'));
+
+            //包含选择器
+            var $div = $('div:contains("张宜成")');
+            //如果选择器返回的是多个元素的时候，那么返回第一个元素的内部文本
+            console.log($div.text());  //jQuery获取选择元素的内部文本
+
+            var domDiv = $div[0];
+            console.log(domDiv.innerHTML);
+
+        });
+    </script>
+</body>
+</html>

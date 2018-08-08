@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>样式处理</title>
+    <script src="../lib/jquery-1.11.3.min.js"></script>
+    <style>
+        
+    </style>
+</head>
+<body>
+
+    <p>1</p>
+    <p>2</p>
+    <p>3</p>
+    <p>4</p>
+    <p>5</p>
+
+    <script>
+        $(function(){
+            //css jQuery内部做了兼容处理,即使没有设置css属性值,会把最终的结果返回.
+            //全部标签颜色设置为红色
+            // $('p').css('color','red');
+             $('p:first').css('color','red');
+            //  $('p:last').css('color','red');
+             console.log($('p:first').css('color'));
+
+            $('p').css({color:'red',"font-size":'18px',"background-color":'blue'})
+
+            //动态创建标签元素
+            //jQuery构造函数的用法汇总:
+            //1.选择器 2.把dom对象转换jQuery对象, 3.接收回调函数,作为网页加载完成的入口
+            //4.接收一个html的字符串,创建成动态的dom包装对象.
+            // $('<div><span>123</span</div>').appendTo(document.body);  //appendTo追加父元素  前面是子 后面是父
+            var $div = $('<div><span>123</span></div>')
+            $(document.body).append($div); //append 追加子元素  前面是父 后面是子
+
+        });
+    </script>
+</body>
+</html>

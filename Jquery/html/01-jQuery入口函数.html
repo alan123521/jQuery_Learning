@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JQuery入口函数</title>
+    <script src="../lib/jquery-1.11.3.min.js"></script>
+</head>
+
+<body>
+    <input type="button" id="btn" value="123" />
+    <script>
+        //DOM
+        // window.onload = function () {
+        //     var btn = document.getElementById('btn');
+        //     btn.onclick = function (e) {
+        //         alert(this.value);
+        //     }
+        // };
+        window.onload = function(){
+            console.log('load')
+        }
+
+        //jQuery占用了两个全局变量  $  === jQuery //true
+        $(function () {
+            //页面加载完成后自动执行
+            console.log('ready1')
+            var btn = document.getElementById('btn');
+            btn.onclick = function(e){
+                alert(this.value);
+            }
+        });  //$是一个函数，Jquery构造函数
+
+        //文档加载完成之后自动执行回调函数
+        $(document).ready(function () {
+            console.log('ready2')
+        });
+
+    </script>
+</body>
+
+</html>
